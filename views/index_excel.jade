@@ -1,0 +1,42 @@
+blockquote.b_card#pre_image(class="blockquote mb-0")
+    article.item.art_card
+        -if(data!="")
+            //- -console.log("entro"+data)
+            table.table.table-striped
+                tr.row
+                    th.col-2(scope="col") Id
+                    th.col-2(scope="col") N° de acuerdo
+                    th.col-2(scope="col") Fecha
+                    th.col-5(scope="col") Detalle
+                    -var cont=0
+                    -for (var i = 0; i < data.length; i++) {
+                        -if(cont>0){
+                            tr.row
+                                th.col-2.text-truncate.text-12(scope="row") #{data[i].acuerdo_id}
+                                    td.col-2 #{data[i].nro_acuerdo}
+                                    td.col-2 #{data[i].fecha}
+                                    td.col-5
+                                        article.w-100.h-100.textarea(disabled).bg-transparent
+                                            p #{data[i].detalle}
+                        -}
+                        -cont++
+                    -}
+                div.text-center
+                //- // -cont++
+        - else
+            table.table.table-striped
+                tr
+                    th(scope="col") Id
+                    th(scope="col") N° de acuerdo
+                    th(scope="col") Fecha
+                    th(scope="col") Detalle
+                    th(scope="col", colspan="2")
+                        div.input-group
+                        input#add.btn.btn-block.btn-success(onclick="A_C('agregar')",type="button", value="Agregar", title="Agregar acuerdos")
+                    tr
+                        th.no_selection.text-black-50(scope="row") Sin informacion
+                        td.no_selection.text-black-50 Sin informacion
+                        td.no_selection.text-black-50 Sin informacion
+                        td.no_selection.text-black-50 Sin informacion 
+                        td.no_selection
+            a#btnsync.button.btn.btn-info.btn-block(href="/C_R:Syncfirebase") Sincronizar con la nube

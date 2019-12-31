@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    include alerts
+    section.container
+        include header
+        form.mb-3(action="/xlsx/upload" enctype="multipart/form-data" method="post")
+            div(class="input-group")
+                div(class="custom-file")
+                    input(type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="upload" required)
+                    input(type="text" id="Name_File" name="Name_File" value="" hidden)
+                    input(type="text" id="path" name="path" value="" hidden)
+                    label(class="custom-file-label" for="inputGroupFile04") Selecciona un archivo
+                div(class="input-group-append")
+                    input(class="btn btn-outline-secondary" type="submit" id="getExcel" value="Enviar" )
+        div.container
+            div(class="card")
+                div(class="card-header") Previsialización
+                div(class="card-body")
+                    input(type="hidden" value="#{pre}" id="preInput")
+                    input(type="hidden" value="img" id="preimmmmm")
+                    -if(pre == "si"){
+                        include index_excel
+                    -}else{
+                        blockquote#block_pre(class="blockquote mb-0")
+                            div#pre_image
+                                h6 Formato de tabla aceptado
+                                img(class="formatoimg" src="../img/Formato de tabla aceptadp.png", alt="")
+                    -}
+                    footer(class="blockquote-footer")= footer
+                        cite(title="Source Title")= cite
+    include footer
